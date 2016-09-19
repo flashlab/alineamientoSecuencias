@@ -14,9 +14,8 @@ INSTALLATION REQUIREMENTS
 The application has been developed on Python2.7, so before running the application
 make sure you have it installed.
 
-Create and select an environment for the application:
-    * pyvenv <env_name>
-    * source <env_name>/bin/activate
+Select the environment for the application:
+    * source flask/bin/activate
     * NOTE: environment for flask web framework has been added to the github repository to facilitate the process.
     
 Install virtualenv
