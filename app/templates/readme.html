@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="panel-group">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h1>LOCAL ALIGNMENT APPLICATION</h1>
+    </div>
+      <div class="panel-body">
+          <p class="lead" style="word-wrap: break-word;">This application is intended to display how similar are two gen sequences based on the substring with the highest score found by the algorithm Smith-Waterman.</p>
+        <p class="lead" style="word-wrap: break-word;">The application has been developed on Flask Framework so it can be deployed on Heroku and be used from anywhere.</p>
+        <h1>INSTALLATION REQUIREMENTS</h1>
+          <p>
+              The application has been developed on Python2.7, so before running the application make sure you have it installed.
+              <br>
+              Create and select an environment for the application:
+              <br>
+              <ul>
+                <li>pyvenv <env_name></li>
+                <li>source <env_name>/bin/activate</li>
+                <li>NOTE: environment for flask web framework has been added to the github repository to facilitate the process.</li>
+                </ul>
+          </p>
+          <p>
+              Install virtualenv:
+              <br>
+              <ul>
+                <li>For OSx: sudo easy_install virtualenv</li>
+                <li>For Linux:  sudo apt-get install python-virtualenv</li>
+                <li>virtualenv flask</li>
+                </ul>
+          </p>
+          <p>
+              Install Flask framework:
+              <br>
+              <ul>
+                <li>flask/bin/pip install flask</li>
+                <li>flask/bin/pip install flask-whooshalchemy</li>
+                <li>flask/bin/pip install flask-wtf</li>
+                <li>flask/bin/pip install flask-babel</li>
+                <li>flask/bin/pip install guess_language</li>
+                <li>flask/bin/pip install flipflop</li>
+                <li>flask/bin/pip install coverage</li>
+                <li>flask/bin/pip install flask-bootstrap</li>
+                </ul>
+          </p>
+          <p>
+              To start the application, it's required to execute the following command:
+                <ul><li>./run.py</li></ul>
+          </p>
+          <p>If the application is executed in a local environment, the url is:</p>
+
+                <ul><li> http://127.0.0.1:5000/</li></ul>
+          </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

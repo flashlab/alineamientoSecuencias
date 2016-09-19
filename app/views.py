@@ -23,6 +23,14 @@ def read_file(filename):
         genArray.append(line)
     return ''.join(genArray)
 
+def read_README():
+    filename = secure_filename('README.md')
+    file = open(filename)
+    fileArray = []
+    for line in file:
+        fileArray.append(line)
+        fileArray.append("<br>")
+    return ''.join(fileArray)
 
 @app.route('/')
 def homepage():
@@ -68,8 +76,6 @@ def runAlignment():
         errors += 'Please enter a valid second gen'
     if not genA and not genB:
         errors = 'Please enter valid gen text/file'
-    print("Hello")
-    print(errors)
     if not errors:
         result = alineamientoLocal.generateLocalAlignment(genA, genB)
         return render_template("resultAlignment.html",
@@ -82,14 +88,15 @@ def runAlignment():
     else:
         return render_template("alignment.html", errors=errors)
 
+
+@app.route('/readme')
+def readme():
+    readmeFile = read_README()
+    return render_template("readme.html", readmeText=readmeFile)
+
 @app.route('/about')
 def aboutpage():
-    title = "About this site"
-    paragraph = ["blah blah blah memememememmeme blah blah memememe"]
-
-    pageType = 'about'
-
-    return render_template("index.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("about.html")
 
 
 @app.route('/about/contact')

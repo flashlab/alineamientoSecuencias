@@ -11,12 +11,13 @@ on Heroku and be used from anywhere.
 INSTALLATION REQUIREMENTS
 =========================
 
-The application has been developed on Python3, so before running the application
+The application has been developed on Python2.7, so before running the application
 make sure you have it installed.
 
 Create and select an environment for the application:
     * pyvenv <env_name>
     * source <env_name>/bin/activate
+    * NOTE: environment for flask web framework has been added to the github repository to facilitate the process.
     
 Install virtualenv
     * For OSx: sudo easy_install virtualenv
@@ -31,3 +32,10 @@ Install Flask framework:
     * flask/bin/pip install guess_language
     * flask/bin/pip install flipflop
     * flask/bin/pip install coverage
+    * flask/bin/pip install flask-bootstrap
+    
+To start the application, it's required to execute the following command:
+    * ./run.py
+
+If the application is executed in a local environment, the url is:
+    * http://127.0.0.1:5000/
