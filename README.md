@@ -1,66 +1,33 @@
-Install Python 3
+LOCAL ALIGNMENT APPLICATION
+===========================
 
-If you type
+This application is intended to display how similar are 2 Gen Strings
+based on the substring with the highest score found by the algorithm
+Smith-Waterman.
 
+The application has been developed on Flask Framework so it can be deployed
+on Heroku and be used from anywhere.
 
-$ brew search python
-1
-$ brew search python
-you will see the available python-related packages to install, and python3 should be among them. Let’s install it!
+INSTALLATION REQUIREMENTS
+=========================
 
+The application has been developed on Python3, so before running the application
+make sure you have it installed.
 
-$ brew install python3
-1
-$ brew install python3
-You can check which version is installed by typing
+Create and select an environment for the application:
+    * pyvenv <env_name>
+    * source <env_name>/bin/activate
+    
+Install virtualenv
+    * For OSx: sudo easy_install virtualenv
+    * For Linux:  sudo apt-get install python-virtualenv
+    * virtualenv flask
 
-
-$ python3 --version
-1
-$ python3 --version
-And you can open it with:
-
-
-$ python3
-1
-$ python3
-Moreover, when you install python with Homebrew, you also install:
-
-the corresponding pip package manager, which is called pip3
-the corresponding Setuptools
-pyvenv, and alternative to virtualenv — cool!!
-Create Virtual environments with pyvenv
-
-Now that you have Python3 you also have pyvenv, a tool to create virtual environments (similar to virtualenv). However, there is one important remark about the version of pyvenv you have installed: only if you installed Python 3.4 or latter, pyvenv will also install pip when creating a new virtual environment.
-
-Let’s create a new virtual envirnoment, named myenv, using pyvenv:
-
-
-$ pyvenv myenv
-1
-$ pyvenv myenv
-This will create a folder named myenv in the current directory. To activate this environment just type:
-
-$ source myenv/bin/activate
-1
-$ source myenv/bin/activate
-and you can start Python 3 by just typing:
-
-$ python
-1
-$ python
-Note that as you are inside the virtual environment, you don’t need to use the command python3 to open Python 3.
-
-http://www.marinamele.com/2014/07/install-python3-on-mac-os-x-and-use-virtualenv-and-virtualenvwrapper.html
-Create Environment
-
-pyvenv Environment
-source envP/bin/activate
-pip install cherrypy
-
-Install pip > sudo easy_install pip
-# Install cherrypy > pip install cherrypy
-Install django > pip install django
-pyv
-
-https://docs.djangoproject.com/en/1.10/intro/tutorial01/
+Install Flask framework:
+    * flask/bin/pip install flask
+    * flask/bin/pip install flask-whooshalchemy
+    * flask/bin/pip install flask-wtf
+    * flask/bin/pip install flask-babel
+    * flask/bin/pip install guess_language
+    * flask/bin/pip install flipflop
+    * flask/bin/pip install coverage

@@ -1,0 +1,21 @@
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+div#loading {
+    top: 450 px;
+    left: 50%;
+    margin: auto;
+    position: auto;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    cursor: wait;
+    display: none;
+    }
+
+.box {
+  margin-left: auto;
+  margin-right: auto;
+}

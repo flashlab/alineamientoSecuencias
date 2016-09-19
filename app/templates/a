@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block content %}
+<script type="text/javascript">
+        function loading(){
+            $("#loading").show();
+            $("#data").addClass("disabledbutton");
+        }
+</script>
+<div id="error">
+            {% if errors %}
+
+                    <div class="alert alert-danger">
+                    {{ errors }}
+                    </div>
+
+        {% endif %}
+</div>
+<table>
+
+        <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
+    </div>
+    <div id="content">
+
+        <form id="data" action="{{ url_for('runAlignment') }}" method="post" enctype="multipart/form-data">
+            <tr>
+                <td>
+                    <div class="alert alert-danger">
+                    {{ errors }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Enter the first sequence here (<2,000 bases, in FASTA format):</p>
+                    <textarea rows="4" cols="50" name="genA" id="genA"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Or upload the first sequence from file (in FASTA format):</p>
+                    <input type="file" name="genAFile" id="genAFile">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Enter the second sequence here (<2,000 bases, in FASTA format):</p>
+                        <textarea rows="4" cols="50" name="genB" id="genB"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Or upload the second sequence from file (in FASTA format):</p>
+                        <input type="file" name="genBFile" id="genBFile">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Run Alignment" name="submit" onclick="loading();">
+                </td>
+            </tr>
+        </form>
+    </div>
+</table>
+{% endblock %}

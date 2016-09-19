@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="panel-group">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h1>Alignment Results</h1>
+        <p class="lead">The following gen sequences were compared:</p>
+        <p>Gen A:<br><code class="text-uppercase" style="word-wrap: break-word;">{{genA}}</code> </p>
+        <p>Gen B:<br><code class="text-uppercase" style="word-wrap: break-word;">{{genB}}</code> </p>
+    </div>
+      <div class="panel-body">
+        <p class="lead">The highest similarity has been found between the following substrings:</p>
+        <p>Alignment A: <br><code class="text-uppercase" style="word-wrap: break-word;">{{substring1}}</code> </p>
+        <p>Alignment B: <br><code class="text-uppercase" style="word-wrap: break-word;">{{substring2}}</code> </p>
+    </div>
+      <div class="panel-footer">
+          <p class="lead">The smallest string (see below) is contained in a <strong>{{simt}}%</strong> </p>
+          <p> <code class="text-uppercase" style="word-wrap: break-word;">{{stringMinor}}</code></p>
+      </div>
+  </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <a class="btn btn-primary" href="/gen/comparison">Back</a>
+    </div>
+</div>
+
+{% endblock %}
