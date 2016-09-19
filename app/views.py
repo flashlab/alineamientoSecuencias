@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for, abort, ses
 from app import app
 from controllers import alineamientoLocal
 from werkzeug import secure_filename
-from sys import argv
+from flask_bootstrap import Bootstrap
+from os.path import join, dirname, realpath
 
 # app.config['UPLOAD_FOLDER'] = '/app/uploads/'
 # These are the extension that we are accepting to be uploaded
