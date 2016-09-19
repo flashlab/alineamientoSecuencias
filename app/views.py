@@ -35,14 +35,7 @@ def read_README():
 
 @app.route('/')
 def homepage():
-    title = "Epic Tutorials"
-    paragraph = [
-        "wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!",
-        "wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!wow I am learning so much great stuff!"]
-    try:
-        return render_template("index.html", title=title, paragraph=paragraph)
-    except Exception, e:
-        return str(e)
+    return render_template("alignment.html")
 
 
 @app.route('/gen/comparison')
