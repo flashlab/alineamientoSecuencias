@@ -37,4 +37,5 @@ To start the application, it's required to execute the following command:
     * ./run.py
 
 If the application is executed in a local environment, the url is:
+    * http://0.0.0.0:5000/
     * http://127.0.0.1:5000/
