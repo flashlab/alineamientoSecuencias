@@ -1,7 +1,6 @@
-#!flask/bin/python
-from app import app
 import os
-# app.run(debug=True)
+from manage.py import app
+
+# if name == "__main__":
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=os.getenv('PORT', 3609))
