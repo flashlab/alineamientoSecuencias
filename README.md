@@ -24,18 +24,10 @@ Install virtualenv
     * virtualenv flask
 
 Install Flask framework:
-    * flask/bin/pip install flask
-    * flask/bin/pip install flask-whooshalchemy
-    * flask/bin/pip install flask-wtf
-    * flask/bin/pip install flask-babel
-    * flask/bin/pip install guess_language
-    * flask/bin/pip install flipflop
-    * flask/bin/pip install coverage
-    * flask/bin/pip install flask-bootstrap
+    * pip install -r requirements.txt
     
 To start the application, it's required to execute the following command:
     * ./run.py
 
 If the application is executed in a local environment, the url is:
-    * http://0.0.0.0:5000/
-    * http://127.0.0.1:5000/
+    * http://0.0.0.0:3609/
