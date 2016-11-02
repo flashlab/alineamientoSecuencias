@@ -8,7 +8,7 @@ from app.controllers.dataStructures import AlignmentData
 # def printMatrix(matrix, rows, cols):
 #     for i in range(rows):
 #         for j in range(cols):
-#             print(" %d " %matrix[i][j].value, end='')
+#             print matrix[i][j].value,
 #         print()
 
 # -------------------------------------------------------------------------------

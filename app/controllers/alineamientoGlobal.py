@@ -4,11 +4,11 @@ from app.controllers.dataStructures import Score
 # Prints any matrix
 # Receives the matrix, rows qty, cols qty
 
-def printMatrix(matrix, rows, cols):
-    for i in range(rows):
-        for j in range(cols):
-            print(" %d " %matrix[i][j].value, end='')
-        print()
+# def printMatrix(matrix, rows, cols):
+#     for i in range(rows):
+#         for j in range(cols):
+#             print(" %d " %matrix[i][j].value, end='')
+#         print()
 
 # -------------------------------------------------------------------------------
 # Initialize any score matrix size
