@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% block content %}
+<div id="error">
+            {% if errors %}
+
+                    <div class="alert alert-danger">
+                    {{ errors }}
+                    </div>
+
+        {% endif %}
+</div>
+    <div id="loading">
+        <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
+    </div>
+    <div id="search" style="width:1000px; margin:0 auto;">
+        <form id="data" action="{{ url_for('searchFasta') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group">
+                <label for="term" class="col-sm-2 control-label"> Search gene sequence: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="term" id="term">
+                </div>
+                <div class="col-sm-3">
+                  <button type="submit" class="btn btn-primary" name="submit" onclick="loading();">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="results" style="width:1000px; margin:0 auto;">
+        <table id="nucleotideTable" class="table table-striped table-hover">
+            <thead>
+                  <th>ID</th>
+                  <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+                <form id="data" action="{{ url_for('selectElement') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% for row in list %}
+                        <tr>
+                            <td>
+                                <!--<div class="col-sm-3">-->
+                                    <input type="radio" name="genItem" value={{row[0]}} class="form-control" checked>  {{ row[0] }}
+                                <!--</div>-->
+                            </td>
+                            <td>{{ row[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                    <div class="col-sm-3">
+                      <button type="submit" class="btn btn-primary" name="submit" onclick="loading();">Select</button>
+                    </div>
+                </form>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

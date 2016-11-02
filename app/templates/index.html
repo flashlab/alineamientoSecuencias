@@ -1,8 +1,12 @@
 <html>
+<link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/animation.css') }}">
 <script src="/static/js/jquery-3.1.0.min.js"> </script>
 <script src="/static/js/bootstrap.min.js"> </script>
+<script src="/static/js/jquery.dataTables.min.js"> </script>
+<script src="/static/js/application.js"> </script>
+<script src="/static/js/jquery.modal.js"> </script>
 <meta name="viewport" content = "width=device-width, initial-scale=1.0">
 <head>
 </head>
@@ -25,6 +29,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav ">
           <li class="active"><a href="/gen/comparison">Gen Comparison</a></li>
+          <li><a href="/entrezAPI">Entrez API</a></li>
+          <li><a href="/parallel">Parallelism</a></li>
           <li><a href="/readme">README</a></li>
 
         </ul>

@@ -1,10 +1,13 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, abort, session
+from flask import Flask, render_template, request, redirect, url_for, abort, session, jsonify
 from app import app
 from controllers import alineamientoLocal
+from controllers import entrezApi
+# from controllers import pExample
 from werkzeug import secure_filename
 from flask_bootstrap import Bootstrap
 from os.path import join, dirname, realpath
+# import subprocess as sub
 
 # app.config['UPLOAD_FOLDER'] = '/app/uploads/'
 # These are the extension that we are accepting to be uploaded
@@ -101,3 +104,36 @@ def contactPage():
     pageType = 'about'
 
     return render_template("index.html", title=title, paragraph=paragraph, pageType=pageType)
+
+@app.route('/entrezAPI')
+def entrezAPI():
+    return render_template("entrezAPI.html")
+
+@app.route('/searchFasta', methods=['POST'])
+def searchFasta():
+    myList = entrezApi.searchByTerm(request.form['term'])
+    # for i in myList:
+    #     print (i)
+    return render_template("entrezAPI.html", list=myList)
+    # return jsonify(list=myList)
+
+@app.route('/selectElement', methods=['POST'])
+def selectElement():
+    fastaString = entrezApi.getFastaInfo(request.form['genItem'])
+    return render_template("alignment.html", genA=fastaString )
+
+
+@app.route('/runParallel', methods=['POST'])
+def runParallel():
+    os.system('cd')
+    os.system("cd app/controllers; python pExample.py "+request.form['workers'])
+    # i = request.form['workers']
+    # binary = os.urandom(7)
+    # # i = int(i)
+    # results = pExample.sum_parallel(i)
+    return render_template("parallel.html")
+
+
+@app.route('/parallel')
+def parallel():
+    return render_template("parallel.html")
