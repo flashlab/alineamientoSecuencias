@@ -5,6 +5,138 @@
             $("#loading").show();
             $("#data").addClass("disabledbutton");
         }
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        function displayModalA() {
+            $("#myModalA").show();
+        }
+
+        // When the user clicks on the button, open the modal
+        function displayModalB() {
+            $("#myModalB").show();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        function closeModalA() {
+            $('#table-body').empty();
+            $('#term').text("");
+            $("#myModalA").hide();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        function closeModalB() {
+            $('#table-body').empty();
+            $('#term').text("");
+            $("#myModalB").hide();
+        }
+
+      $(function() {
+        $("#submitBtnA").click(function() {
+             $.ajax({
+                type: "GET",
+                url: "/searchFasta",
+                data: { term: $('input[name="term"]').val() },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    $('#table-bodyA').empty();
+                    $('#table-bodyA').append('<div id="radio">')
+                    data.forEach(function (buses) {
+                        var $row = $('<tr>')
+                            .appendTo($('#table-bodyA'));
+                        var count = 0;
+                            buses.forEach(function (bus) {
+                                if (count == 0) {
+                                    $('<td>')
+                                    .append('<input type="radio" name="genItem" id="genItem" value='+bus+' class="form-control" onclick="clickRadioA();">'+bus)
+                                    .appendTo($row);
+                                }
+                                else{
+                                    $('<td>')
+                                    .text(bus)
+                                    .appendTo($row);
+                                 }
+                                count++;
+
+                           });
+                     });
+                }
+            });
+        });
+      });
+
+      function clickRadioA(){
+             $.ajax({
+                type: "GET",
+                url: "/selectElement",
+                data: { genItem: $('input[name=genItem]:checked').val() },
+                success: function (data) {
+                    $('#genA').empty();
+                    console.log("Test");
+                    data = JSON.parse(data);
+                    $('#genA').text(data);
+                }
+            });
+      }
+
+
+
+      $(function() {
+        $("#submitBtnB").click(function() {
+             $.ajax({
+                type: "GET",
+                url: "/searchFasta",
+                data: { term: $('input[name="term"]').val() },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    $('#table-bodyB').empty();
+                    $('#table-bodyB').append('<div id="radio">')
+                    data.forEach(function (buses) {
+                        var $row = $('<tr>')
+                            .appendTo($('#table-bodyB'));
+                        var count = 0;
+                            buses.forEach(function (bus) {
+                                if (count == 0) {
+                                    $('<td>')
+                                    .append('<input type="radio" name="genItem" id="genItem" value='+bus+' class="form-control" onclick="clickRadioB();">'+bus)
+                                    .appendTo($row);
+                                }
+                                else{
+                                    $('<td>')
+                                    .text(bus)
+                                    .appendTo($row);
+                                 }
+                                count++;
+
+                           });
+                     });
+                }
+            });
+        });
+      });
+
+      function clickRadioB(){
+             $.ajax({
+                type: "GET",
+                url: "/selectElement",
+                data: { genItem: $('input[name=genItem]:checked').val() },
+                success: function (data) {
+                    $('#genB').empty();
+                    console.log("Test");
+                    data = JSON.parse(data);
+                    $('#genB').text(data);
+                }
+            });
+      }
+
 </script>
 <div id="error">
             {% if errors %}
@@ -20,7 +152,7 @@
     </div>
     <div id="content" class="box" style="width:1000px; margin:0 auto;">
 
-        <form id="data" action="{{ url_for('runAlignment') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <form id="data" action="{{ url_for('runAlignment2') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 
             <div class="form-group">
                 <label for="genA" class="col-sm-2 control-label">First Gen Sequence:</label>
@@ -54,5 +186,73 @@
                 </div>
             </div>
         </form>
+        <button id="myBtnA" onclick="displayModalA();" class="btn btn-primary">NCBI - Gen A</button>
+        <button id="myBtnB" onclick="displayModalB();" class="btn btn-primary">NCBI - Gen B</button>
     </div>
+
+
+
+    <!-- Trigger/Open The Modal -->
+
+    <!-- The Modal -->
+    <div id="myModalA" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModalA();">x</span>
+            <div id="search" style="width:1000px; margin:0 auto;">
+                <div class="form-group">
+                    <label for="term" class="col-sm-2 control-label"> Search gene sequence: </label>
+
+                    <input type="text" style="width:40%;" class="form-control col-sm-2 control-label" name="term" id="term">
+                    <button type="button" id="submitBtnA" name="submitBtnA" class="btn btn-primary">Search</button><br><br>
+                </div>
+            </div>
+            <div id="results" style="width:100%; margin:0 auto;">
+                <table id="nucleotideTableA" class="table table-striped table-hover">
+                    <thead>
+                          <th>ID</th>
+                          <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-bodyA">
+
+                    </tbody>
+                </table>
+            </div>
+      </div>
+        </div>
+
+
+          <!-- The Modal -->
+    <div id="myModalB" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModalB();">x</span>
+            <div id="search" style="width:1000px; margin:0 auto;">
+                <div class="form-group">
+                    <label for="term" class="col-sm-2 control-label"> Search gene sequence: </label>
+
+                    <input type="text" style="width:40%;" class="form-control col-sm-2 control-label" name="term" id="term">
+                    <button type="button" id="submitBtnB" name="submitBtnB" class="btn btn-primary">Search</button><br><br>
+
+                </div>
+            </div>
+            <div id="results" style="width:100%; margin:0 auto;">
+                <table id="nucleotideTableB" class="table table-striped table-hover">
+                    <thead>
+                          <th>ID</th>
+                          <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-bodyB">
+
+                    </tbody>
+                </table>
+            </div>
+      </div>
+        </div>
+
+</div>
 {% endblock %}

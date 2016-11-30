@@ -10,14 +10,11 @@
         <p>Gen B:<br><code class="text-uppercase" style="word-wrap: break-word;">{{genB}}</code> </p>
     </div>
       <div class="panel-body">
-        <p class="lead">The highest similarity has been found between the following substrings:</p>
-        <p>Alignment A: <br><code class="text-uppercase" style="word-wrap: break-word;">{{substring1}}</code> </p>
-        <p>Alignment B: <br><code class="text-uppercase" style="word-wrap: break-word;">{{substring2}}</code> </p>
+        <p class="lead">{{result[0]}}</p>
+          {% for i in range(1,sizel) %}
+                    <p><code class="text-uppercase" style="word-wrap: break-word;">{{result[i]}}</code> </p>
+          {% endfor %}
     </div>
-      <div class="panel-footer">
-          <p class="lead">The smallest string (see below) is contained in a <strong>{{simt}}%</strong> </p>
-          <p> <code class="text-uppercase" style="word-wrap: break-word;">{{stringMinor}}</code></p>
-      </div>
   </div>
 </div>
 <div class="form-group">
