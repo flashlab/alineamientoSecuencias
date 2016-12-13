@@ -8,6 +8,8 @@
 <script src="/static/js/jquery.dataTables.min.js"> </script>
 <script src="/static/js/application.js"> </script>
 <script src="/static/js/jquery.modal.js"> </script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
 <meta name="viewport" content = "width=device-width, initial-scale=1.0">
 <head>
 </head>
@@ -23,16 +25,24 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Sequences Alignment - Local</a>
+        <a class="navbar-brand" href="/">
+            <img src="/static/images/Bacteria.jpg" alt="Bacteria Image" style="width:30px;height:30px;">
+        </a>
+        <a class="navbar-brand" href="/">Bacteria Resistance App</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav ">
-          <li class="active"><a href="/gen/comparison">Gen Comparison</a></li>
-          <li><a href="/entrezAPI">Entrez API</a></li>
           <li><a href="/reference">Reference Gen</a></li>
+          <li><a href="/resistanceTest">Resistance Test</a></li>
+          <li><a href="/entrezAPI">Fasta Files</a></li>
+          <li><a href="/graphics">Resistance Graphics</a></li>
           <li><a href="/readme">README</a></li>
+          <!--<li class="active"><a href="/gen/comparison">Gen Comparison</a></li>-->
+          <!--<li><a href="/entrezAPI">Entrez API</a></li>-->
+          <!--<li><a href="/reference">Reference Gen</a></li>-->
+          <!--<li><a href="/readme">README</a></li>-->
 
         </ul>
           <div class="navbar-form navbar-left">
@@ -42,6 +52,8 @@
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+    {% block guide %}
+    {% endblock %}
   </nav>
     {% block content %}
     {% endblock %}

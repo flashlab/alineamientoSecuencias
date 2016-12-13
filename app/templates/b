@@ -1,0 +1,96 @@
+{% extends "index.html" %}
+{% block guide %}
+<div id="guide" style="position:absolute">
+    <img src="/static/images/Orange_Line_button.png" alt="divider" style="position:absolute;left:525px;width:98px;height:10px;">
+</div>
+{% endblock %}
+{% block content %}
+<div id="error">
+            {% if errors %}
+
+                    <div class="alert alert-danger">
+                    {{ errors }}
+                    </div>
+
+        {% endif %}
+</div>
+    <div id="loading">
+        <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
+    </div>
+    <div id="search" style="width:1000px; margin:0 auto;">
+        <form id="data" action="{{ url_for('searchFastaSA') }}" method="get" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group">
+                <label for="term" class="col-sm-2 control-label"> Search gene sequence: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="term" id="term">
+                </div>
+                <div class="col-sm-3">
+                  <button type="submit" class="btn btn-primary" name="submit" onclick="loading();">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="results" style="width:1000px; margin:0 auto;">
+        <table id="nucleotideTableR" class="table table-striped table-hover">
+            <thead>
+                  <th>ID</th>
+                  <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+                <form id="data2" action="{{ url_for('selectElement') }}" method="get" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="col-sm-10">
+                        {% for row in list %}
+                            <tr>
+                                <td>
+                                        <input type="radio" name="genItem" value={{row[0]}} class="form-control">  {{ row[0] }}
+                                </td>
+                                <td>{{ row[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <div class="col-sm-3" style="position:absolute;left:525px;width:98px;height:10px;">
+                      <button type="submit" class="btn btn-primary" name="submit" onclick="loading();">Download fasta</button>
+                    </div>
+                    <br>
+                </form>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+
+from Bio import Entrez
+
+def searchByTerm(searchTerm):
+    Entrez.email = "paocalderon22@gmail.com"  # Always tell NCBI who you are
+    handlerGenes = Entrez.esearch(db="gene", term=searchTerm)
+    record = Entrez.read(handlerGenes)
+    geneList = []
+    for i in record["IdList"]:
+        elementList = []
+        handlerId = Entrez.efetch(db="gene", id=i, rettype="fasta", retmode="text")
+        elementList.append(i)
+        elementList.append(getDisplay(handlerId.read()))
+        geneList.append(elementList)
+    return geneList
+
+def getDisplay(element):
+    string = element[4:]
+    arrayString = str.split(string, 'Other')
+    return arrayString[0]
+
+def getFastaInfo(elementID):
+    print "On getFastaInfo"
+    Entrez.email = "paocalderon22@gmail.com"  # Always tell NCBI who you are
+    handle = Entrez.efetch(db="nucleotide", id=elementID, rettype="fasta", retmode="txt")
+    file = handle.read()
+    print file
+    print "This is my file"
+    return file
+    # records = handle.read().splitlines()
+    # records.remove(records[0])
+    # print(records)
+    # return ''.join(records)

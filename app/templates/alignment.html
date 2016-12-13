@@ -1,4 +1,9 @@
 {% extends "index.html" %}
+{% block guide %}
+<div id="guide" style="position:absolute">
+    <img src="/static/images/Orange_Line_button.png" alt="divider" style="position:absolute;left:396px;width:130px;height:10px;">
+</div>
+{% endblock %}
 {% block content %}
 <script type="text/javascript">
         function loading(){
@@ -138,6 +143,7 @@
       }
 
 </script>
+
 <div id="error">
             {% if errors %}
 
@@ -147,31 +153,32 @@
 
         {% endif %}
 </div>
-    <div id="loading">
-        <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
-    </div>
+
+<div id="loading">
+    <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
+</div>
+
     <div id="content" class="box" style="width:1000px; margin:0 auto;">
+
 
         <form id="data" action="{{ url_for('runAlignment2') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 
             <div class="form-group">
-                <label for="genA" class="col-sm-2 control-label">First Gen Sequence:</label>
+                <label for="genA" class="col-sm-2 control-label">Resistance Type: </label>
                 <div class="col-sm-10">
-                    <textarea rows="3" class="form-control" cols="50" name="genA" id="genA" placeholder="First Gen Sequence (<2,000 bases, in FASTA format)">{{genA}}</textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="genAFile" class="col-sm-2 control-label"> or Upload File: </label>
-                <div class="col-sm-10">
-                    <input type="file" class="form-control" name="genAFile" id="genAFile">
+                    <select class="form-control" cols="50" name="genA" id="genA">
+                        {% for row in types %}
+                            <option value="{{row.id}}">{{row.type}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
 
             <hr>
             <div class="form-group">
-                <label for="genB" class="col-sm-2 control-label">Second Gen Sequence:</label>
+                <label for="genB" class="col-sm-2 control-label">Gen Sequence:</label>
                 <div class="col-sm-10">
-                    <textarea rows="3" class="form-control" cols="50" name="genB" id="genB" placeholder="Second Gen Sequence (<2,000 bases, in FASTA format)"></textarea>
+                    <textarea rows="3" class="form-control" cols="50" name="genB" id="genB" placeholder="Gen Sequence (<2,000 bases, in FASTA format)"></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -186,8 +193,8 @@
                 </div>
             </div>
         </form>
-        <button id="myBtnA" onclick="displayModalA();" class="btn btn-primary">NCBI - Gen A</button>
-        <button id="myBtnB" onclick="displayModalB();" class="btn btn-primary">NCBI - Gen B</button>
+        <!--<button id="myBtnA" onclick="displayModalA();" class="btn btn-primary">NCBI - Gen A</button>-->
+        <button id="myBtnB" onclick="displayModalB();" class="btn btn-primary">NCBI - Get Gen Sequence</button>
     </div>
 
 

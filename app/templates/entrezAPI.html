@@ -1,19 +1,24 @@
 {% extends "index.html" %}
+{% block guide %}
+<div id="guide" style="position:absolute">
+    <img src="/static/images/Orange_Line_button.png" alt="divider" style="position:absolute;left:525px;width:98px;height:10px;">
+</div>
+{% endblock %}
 {% block content %}
 <div id="error">
-            {% if errors %}
+    {% if errors %}
 
-                    <div class="alert alert-danger">
-                    {{ errors }}
-                    </div>
+        <div class="alert alert-danger">
+        {{ errors }}
+        </div>
 
-        {% endif %}
+    {% endif %}
 </div>
     <div id="loading">
         <img src="/static/images/loadingimage.gif" alt="Executing Algorithm" style="width:304px;height:228px;">
     </div>
     <div id="search" style="width:1000px; margin:0 auto;">
-        <form id="data" action="{{ url_for('searchFastaSA') }}" method="get" enctype="multipart/form-data" class="form-horizontal">
+        <form id="data" action="{{ url_for('searchFastaSA') }}" method="get" class="form-horizontal">
             <div class="form-group">
                 <label for="term" class="col-sm-2 control-label"> Search gene sequence: </label>
                 <div class="col-sm-7">
@@ -26,26 +31,32 @@
         </form>
     </div>
     <div id="results" style="width:1000px; margin:0 auto;">
-        <table id="nucleotideTableR" class="table table-striped table-hover">
+        <table id="nucleotideTableS" class="table table-striped table-hover">
             <thead>
                   <th>ID</th>
                   <th>Name</th>
               </tr>
             </thead>
             <tbody>
-                <form id="data" action="{{ url_for('selectElement') }}" method="get" enctype="multipart/form-data" class="form-horizontal">
-                    {% for row in list %}
-                        <tr>
-                            <td>
-                                    <input type="radio" name="genItem" value={{row[0]}} class="form-control">  {{ row[0] }}
-                            </td>
-                            <td>{{ row[1] }}</td>
-                        </tr>
-                    {% endfor %}
-                    <div class="col-sm-3">
-                      <button type="submit" class="btn btn-primary" name="submit" onclick="loading();">Select</button>
-                    </div>
-                </form>
+                <div id="search2" style="width:1000px; margin:0 auto;">
+                    <!--<form id="data2" action="{{ url_for('selectElement') }}" method="post" enctype="multipart/form-data" class="form-horizontal">-->
+                    <form id="data" action="{{ url_for('selectElement') }}" method="get" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="col-sm-3">
+                        {% for row in list %}
+                            <tr>
+                                <td>
+                                        <input type="radio" id="{{ row[0] }}" name="genNames" value="{{ row[0] }}" class="form-control">  {{ row[0] }}
+                                </td>
+                                <td>{{ row[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </div>
+                        <div class="col-sm-3" style="left:200px;width:98px;height:10px;">
+                          <button type="submit" class="btn btn-primary" name="submit">Download Fasta</button>
+                            <!--onclick="loading();"-->
+                        </div>
+                    </form>
+                </div>
             </tbody>
         </table>
     </div>

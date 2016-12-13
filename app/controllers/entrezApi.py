@@ -2,6 +2,7 @@ from Bio import Entrez
 
 def searchByTerm(searchTerm):
     Entrez.email = "paocalderon22@gmail.com"  # Always tell NCBI who you are
+    print searchTerm
     handlerGenes = Entrez.esearch(db="gene", term=searchTerm)
     record = Entrez.read(handlerGenes)
     geneList = []
@@ -20,15 +21,9 @@ def getDisplay(element):
 
 def getFastaInfo(elementID):
     Entrez.email = "paocalderon22@gmail.com"  # Always tell NCBI who you are
-    handle = Entrez.efetch(db="nucleotide", id=elementID, rettype="fasta", retmode="json")
-    records = handle.read().splitlines()
-    records.remove(records[0])
-    print(records)
-    return ''.join(records)
-    # handler = Entrez.efetch(db="nucleotide", id=elementID, retmode="xml")
-    # element = Entrez.parse(handler)
-    # print(element['TSeq_sequence'])
-    # return element
+    print elementID
+    handle = Entrez.efetch(db="nucleotide", id=elementID, rettype="fasta", retmode="txt")
+    return handle.read()
 
 # GBSeq_sequence-gb
 # TSeq_sequence-fasta

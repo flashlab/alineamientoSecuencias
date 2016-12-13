@@ -44,6 +44,10 @@ def generateAlignment():
     alignment_str, idents, gaps, mismatches = alignment_string(seq1_aligned, seq2_aligned)
     alength = len(seq1_aligned)
     list.append("")
+    if (idents*100)/alength > 50:
+        list.append("This gen is resistant")
+    else:
+        list.append("This gen is not resistant")
     list.append(' Identities = {0}/{1}  Gaps = {3}/{4}'.format(idents,
           alength, idents / alength, gaps, alength, gaps / alength))
     list.append("")
